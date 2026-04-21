@@ -312,15 +312,17 @@ function TodayRow({ category, current, today, onClick }) {
       <div className="day-label">
         <div className="day-word">Oggi</div>
       </div>
-      <div className="today-main">
-        <WeatherIcon category={category} size={88} />
-        <div className="today-temp">{current.temperature.toFixed(1)}°</div>
+      <div className="day-icon">
+        <WeatherIcon category={category} size={78} />
       </div>
-      <div className="today-details">
+      <div className="day-temps today-temp-col">
+        <div className="today-big-temp">{current.temperature.toFixed(1)}°</div>
+        <div className="today-apparent">Perc. {Math.round(current.apparent)}°</div>
+      </div>
+      <div className="day-details today-details-col">
         <DetailLine icon={<DropIcon />} text={precip} />
         <DetailLine icon={<WindIcon />} text={wind} />
-        <DetailLine text={`T. Percepita ${Math.round(current.apparent)}°`} />
-        <DetailLine icon={<DropIcon />} text={`Umidità ${Math.round(current.humidity)}%`} />
+        <DetailLine icon={<DropIcon />} text={`Um. ${Math.round(current.humidity)}%`} />
       </div>
     </button>
   );

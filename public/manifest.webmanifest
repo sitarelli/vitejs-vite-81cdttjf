@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "MeteoVit",
   "short_name": "MeteoVit",
   "description": "Previsioni meteo a 5 giorni — A VittoArt Production",
@@ -9,6 +10,9 @@
   "theme_color": "#2e5e94",
   "background_color": "#1c3f76",
   "lang": "it",
+  "dir": "ltr",
+  "categories": ["weather", "utilities"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icon.svg",

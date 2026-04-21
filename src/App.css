@@ -48,7 +48,7 @@ a { color: inherit; }
   min-height: 100dvh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;   /* was flex-start — centra verticalmente il riquadro */
   padding: 16px;
   background: radial-gradient(
     1200px 600px at 50% -10%,
@@ -87,7 +87,9 @@ a { color: inherit; }
 .phone-detail {
   background: var(--detail-bg);
   color: var(--detail-text);
-  overflow: visible;   /* allow sticky header/tabs to stick against the viewport */
+  /* overflow stays hidden (inherited from .phone) so the 22px border-radius
+     clips the detail header/body/footer at the corners. Sticky header/tabs
+     still work because overflow:hidden is not a scroll container. */
 }
 .phone-detail::after { display: none; }
 
@@ -335,10 +337,9 @@ a { color: inherit; }
 }
 
 .row-today {
-  grid-template-columns: 58px 1fr 108px;
+  /* Stessa grid delle altre righe, ma altezza maggiore */
   min-height: 130px;
   background: linear-gradient(180deg, #3a6fa3, #2a5a8c);
-  gap: 10px;
 }
 
 .day-label {
@@ -367,37 +368,35 @@ a { color: inherit; }
   margin-top: 2px;
 }
 
-/* ---- Oggi ---- */
+/* ---- Oggi: colonna temperatura grande (al posto di max/min) ---- */
 
-.today-main {
-  display: flex;
+.today-temp-col {
   align-items: center;
-  gap: 6px;
-  min-width: 0;         /* allow flex children to shrink inside grid cell */
-  overflow: hidden;
+  justify-content: center;
 }
-.today-main > svg { flex-shrink: 0; }
-.today-temp {
-  font-size: 40px;
+.today-big-temp {
+  font-size: 32px;
   font-weight: 300;
-  letter-spacing: -1.5px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  letter-spacing: -1px;
+  color: #ffffff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
   line-height: 1;
-  flex-shrink: 0;
   white-space: nowrap;
 }
-.today-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
-  text-align: right;
-  font-size: 11.5px;
+.today-apparent {
+  font-size: 11px;
   color: var(--text-dim);
-  padding-left: 2px;
-  overflow: hidden;
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
 }
-.today-details .detail-text { white-space: nowrap; }
+
+/* ---- Oggi: colonna dettagli (3 righe invece di 2) ---- */
+
+.today-details-col {
+  font-size: 11.5px;
+}
+.today-details-col .detail-text { white-space: nowrap; }
 
 /* ---- Giorno singolo ---- */
 
@@ -688,7 +687,7 @@ a { color: inherit; }
     grid-template-columns: 48px 72px 64px 1fr;
     padding: 8px;
   }
-  .today-temp { font-size: 40px; }
+  .today-big-temp { font-size: 28px; }
   .temp-line  { font-size: 16px; }
   .hour-row {
     grid-template-columns: 1fr 50px 54px 1fr;
