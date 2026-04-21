@@ -81,6 +81,52 @@ src/
   descrizioni italiane (`weatherDescription`).
 - Nessun rate limit stretto per uso non commerciale.
 
+## PWA / icone / favicon
+
+L'app è installabile come PWA ("Aggiungi a Home"). Tutti gli asset sono nella cartella
+`public/` e vengono copiati automaticamente in `dist/` dal build di Vite:
+
+- `icon.svg` — icona master SVG (favicon su browser moderni)
+- `favicon.ico`, `favicon-16.png`, `favicon-32.png`, `favicon-48.png`, `favicon-64.png`
+  — favicon classici per bookmarks / tab dei browser
+- `apple-touch-icon.png` (180×180) — icona sulla Home di iPhone/iPad
+- `icon-192.png`, `icon-512.png` — icone PWA standard (Android)
+- `icon-maskable-512.png` — icona "maskable" per adaptive icons Android
+- `manifest.webmanifest` — definisce nome app (`MeteoVit`), tema colori,
+  `display: standalone` per aprire l'app senza barra del browser
+
+### Come si comporta
+
+- **Desktop (bookmark/tab)**: mostra l'icona blu con sole+nuvola
+- **Android**: "Aggiungi a schermata Home" dal menu Chrome → icona colorata e app fullscreen
+- **iPhone/iPad**: Safari → Condividi → "Aggiungi a Home" → icona colorata e app fullscreen
+
+### Sostituire l'icona
+
+Modifica `public/icon.svg` (512×512 viewBox) e rigenera i PNG. Dalla root del progetto:
+
+```bash
+pip install cairosvg
+cd public
+python3 -c "
+import cairosvg
+with open('icon.svg','rb') as f: svg = f.read()
+for s in [16,32,48,64]:
+    cairosvg.svg2png(bytestring=svg, output_width=s, output_height=s, write_to=f'favicon-{s}.png')
+for s in [180]:
+    cairosvg.svg2png(bytestring=svg, output_width=s, output_height=s, write_to='apple-touch-icon.png')
+for s in [192,512]:
+    cairosvg.svg2png(bytestring=svg, output_width=s, output_height=s, write_to=f'icon-{s}.png')
+"
+# Per favicon.ico:
+python3 -c "
+from PIL import Image
+Image.open('favicon-64.png').save('favicon.ico', format='ICO', sizes=[(16,16),(32,32),(48,48),(64,64)])
+"
+```
+
+
+
 ## Storage locale
 
 - `meteo-app.favorites` — array di città preferite.

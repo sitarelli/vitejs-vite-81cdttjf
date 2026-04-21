@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a7eb8"/>
+      <stop offset="55%" stop-color="#2e5e94"/>
+      <stop offset="100%" stop-color="#1c3f76"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff4b0"/>
+      <stop offset="45%" stop-color="#ffd54a"/>
+      <stop offset="90%" stop-color="#f39c12"/>
+      <stop offset="100%" stop-color="#c46a0a"/>
+    </radialGradient>
+    <linearGradient id="cloud" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#e8ecf1"/>
+      <stop offset="100%" stop-color="#b9c2cd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Full-bleed background (no corner radius - Android handles masking) -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Safe zone is inner 80% (60..452). Content scaled and centered. -->
+  <g transform="translate(51 51) scale(0.8)">
+    <!-- Sun rays -->
+    <g stroke="#f5b73b" stroke-width="10" stroke-linecap="round" opacity="0.55">
+      <line x1="180" y1="94" x2="180" y2="130"/>
+      <line x1="108" y1="166" x2="136" y2="186"/>
+      <line x1="82" y1="238" x2="120" y2="238"/>
+      <line x1="108" y1="310" x2="136" y2="290"/>
+      <line x1="252" y1="166" x2="224" y2="186"/>
+      <line x1="278" y1="238" x2="240" y2="238"/>
+      <line x1="252" y1="310" x2="224" y2="290"/>
+      <line x1="180" y1="382" x2="180" y2="346"/>
+    </g>
+
+    <!-- Sun body -->
+    <circle cx="180" cy="238" r="92" fill="url(#sun)" stroke="#c46a0a" stroke-width="4"/>
+    <circle cx="152" cy="210" r="22" fill="#fff7c2" opacity="0.5"/>
+
+    <!-- Cloud -->
+    <path d="M 140 400 h 232 a 72 72 0 0 0 0 -144 a 48 48 0 0 0 -86 -26 a 72 72 0 0 0 -136 60 a 56 56 0 0 0 -10 110 z"
+          fill="url(#cloud)" stroke="#5f6b78" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+</svg>

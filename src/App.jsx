@@ -313,7 +313,7 @@ function TodayRow({ category, current, today, onClick }) {
         <div className="day-word">Oggi</div>
       </div>
       <div className="today-main">
-        <WeatherIcon category={category} size={108} />
+        <WeatherIcon category={category} size={88} />
         <div className="today-temp">{current.temperature.toFixed(1)}°</div>
       </div>
       <div className="today-details">
@@ -376,11 +376,17 @@ function DetailLine({ icon, text }) {
 function Footer({ variant = 'dark' }) {
   return (
     <div className={`footer footer-${variant}`}>
-      Dati:{' '}
-      <a href="https://open-meteo.com" target="_blank" rel="noreferrer">
-        Open-Meteo
-      </a>{' '}
-      · <span className="vittoart">A VittoArt Production</span>
+      <div className="footer-line">
+        Dati:{' '}
+        <a href="https://open-meteo.com" target="_blank" rel="noreferrer">
+          Open-Meteo
+        </a>{' '}
+        · <span className="vittoart">A VittoArt Production</span>
+      </div>
+      <div className="footer-install">
+        <span className="footer-ios-label">iPhone:</span> apri con Safari →
+        Condividi → <strong>“Aggiungi a Home”</strong> per usarla come app.
+      </div>
     </div>
   );
 }
